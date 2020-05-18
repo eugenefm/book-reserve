@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "env-cmd -f ./config/dev.env nodemon server.js",
-    "insert": "env-cmd -f ./config/dev.env node ./config/db/insert.js",
+    "dev": "env-cmd -f ./config/.env nodemon server.js",
+    "insert": "env-cmd -f ./config/.env node ./config/db/insert.js",
     "start": "node server.js",
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
