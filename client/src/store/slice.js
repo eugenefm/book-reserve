@@ -22,6 +22,13 @@ export const bookSlice = createSlice({
     setPage: (state, action) => {
       state.page = action.payload;
     },
+    setReserved: (state, action) => {
+      const i = state.availableBooks.findIndex(
+        (book) => book._id === action.payload._id
+      );
+      state.availableBooks[i].reservedQuantity =
+        action.payload.reservedQuantity;
+    },
     setAvailablePages: (state, action) => {
       state.availablePages = action.payload;
     },
@@ -41,6 +48,7 @@ export const {
   setError,
   setFetching,
   setPage,
+  setReserved,
 } = bookSlice.actions;
 
 export const fetchBooks = (term, page, reserved, history) => async (
@@ -48,6 +56,7 @@ export const fetchBooks = (term, page, reserved, history) => async (
 ) => {
   try {
     dispatch(setTerm(''));
+    dispatch(setBooks([]));
     dispatch(setError(''));
     dispatch(setFetching(true));
 
@@ -75,6 +84,23 @@ export const fetchBooks = (term, page, reserved, history) => async (
   }
 };
 
+export const updateReservation = (type, id) => async (dispatch) => {
+  try {
+    dispatch(setError(''));
+
+    const res = await axios.patch('/api', {
+      id,
+      type,
+    });
+
+    const book = res.data;
+    if (book) return dispatch(setReserved(book));
+  } catch (err) {
+    console.log(err.response.data.msg);
+    dispatch(setError(err.response.data.msg));
+  }
+};
+
 // export const selectRestaurants = (state) => {
 //   const { availableRestaurants, filter } = state.restaurantSearch;
 //   if (!filter) return availableRestaurants;
@@ -87,6 +113,12 @@ export const fetchBooks = (term, page, reserved, history) => async (
 // };
 
 export const selectError = (state) => state.bookSearch.error;
+
+export const selectTerm = (state) => state.bookSearch.term;
+
+export const selectPage = (state) => state.bookSearch.page;
+
+export const selectAvailablePages = (state) => state.bookSearch.availablePages;
 
 export const selectBooks = (state) => state.bookSearch.availableBooks;
 

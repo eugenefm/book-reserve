@@ -41,7 +41,7 @@ router.get('/', async (req, res) => {
 router.patch('/', async (req, res) => {
   try {
     const { type, id } = req.body;
-    console.log(id);
+    console.log(req.body);
 
     const book = await Book.findOne({ _id: id });
     if (!book) {

@@ -11,6 +11,9 @@ $white: #fff;
 body {
   background-color: $backgroundShade;
   color: $darkText;
+  min-height: 100vh;
+  padding-bottom: 40px;
+  position: relative;
 }
 
 main {
@@ -22,6 +25,9 @@ footer {
   background-color: $darkText;
   padding: 10px;
   min-height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
 
   p {
     color: $white;
@@ -130,7 +136,6 @@ input {
 }
 
 .hero {
-  min-height: calc(100vh - 40px);
   padding: 40px 10px 10px;
 
   .card {
