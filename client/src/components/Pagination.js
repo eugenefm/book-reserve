@@ -1,10 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectPage, fetchBooks } from '../store/slice';
 
-const Pagination = ({ availablePages, term, history }) => {
+const Pagination = ({ availablePages, term }) => {
   const page = useSelector(selectPage);
   console.log(page);
   const dispatch = useDispatch();
@@ -12,7 +11,7 @@ const Pagination = ({ availablePages, term, history }) => {
   return (
     <div className='pagination-container'>
       <button
-        onClick={() => dispatch(fetchBooks(term, page - 1, history))}
+        onClick={() => dispatch(fetchBooks(term, page - 1))}
         disabled={page < 1}
         aria-label='Go to previous search result page.'
       >
@@ -20,7 +19,7 @@ const Pagination = ({ availablePages, term, history }) => {
       </button>
       <span>{`${page + 1} of ${availablePages}`}</span>
       <button
-        onClick={() => dispatch(fetchBooks(term, page + 1, history))}
+        onClick={() => dispatch(fetchBooks(term, page + 1))}
         disabled={page >= availablePages - 1}
         aria-label='Go to next search result page.'
       >
@@ -32,4 +31,4 @@ const Pagination = ({ availablePages, term, history }) => {
 
 Pagination.propTypes = {};
 
-export default withRouter(Pagination);
+export default Pagination;

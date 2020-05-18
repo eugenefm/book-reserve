@@ -1,9 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BookCard from './BookCard';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectBooks, selectAvailablePages, selectTerm } from '../store/slice';
-import SearchBar from './SearchBar';
 import Pagination from './Pagination';
 
 const SearchResults = () => {
@@ -12,11 +11,13 @@ const SearchResults = () => {
   const term = useSelector(selectTerm);
 
   return (
-    <div aria-live='polite'>
-      <h2>{`Search Results${term && term.length > 0 && ` for "${term}"`}`}</h2>
-      <div className='cards-container wrapper'>
-        {books.length > 0 &&
-          books.map(({ title, author, quantity, reservedQuantity, _id }) => (
+    books.length > 0 && (
+      <div aria-live='polite'>
+        <h2>{`Search Results${
+          term && term.length > 0 && ` for "${term}"`
+        }`}</h2>
+        <ul className='cards-container wrapper'>
+          {books.map(({ title, author, quantity, reservedQuantity, _id }) => (
             <BookCard
               key={_id}
               title={title}
@@ -26,9 +27,10 @@ const SearchResults = () => {
               id={_id}
             />
           ))}
+        </ul>
+        <Pagination availablePages={availablePages} term={term} />
       </div>
-      <Pagination availablePages={availablePages} term={term} />
-    </div>
+    )
   );
 };
 

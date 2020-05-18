@@ -14,31 +14,30 @@ const RestaurantCard = ({ title, author, quantity, reservedQuantity, id }) => {
         <p>{`${quantity} ${copies(quantity)} in stock.`}</p>
         <p>{`${reservedQuantity} ${copies(reservedQuantity)} reserved.`}</p>
       </div>
-      <button
-        disabled={reservedQuantity >= quantity}
-        onClick={() => dispatch(updateReservation('reserve', id))}
-      >
-        Reserve
-      </button>
-      <button
-        disabled={reservedQuantity < 1}
-        onClick={() => dispatch(updateReservation('return', id))}
-      >
-        Return
-      </button>
-      {/* <a href={reserveUrl} aria-label={`Reserve a table at ${name}.`}>
-        Reserve a Table
-      </a> */}
+      <div className='cta'>
+        <button
+          disabled={reservedQuantity >= quantity}
+          onClick={() => dispatch(updateReservation('reserve', id))}
+        >
+          Reserve
+        </button>
+        <button
+          disabled={reservedQuantity < 1}
+          onClick={() => dispatch(updateReservation('return', id))}
+        >
+          Return
+        </button>
+      </div>
     </li>
   );
 };
 
 RestaurantCard.propTypes = {
-  imgSrc: PropTypes.string,
-  name: PropTypes.string,
-  address: PropTypes.string,
-  price: PropTypes.number,
-  reserveUrl: PropTypes.string,
+  title: PropTypes.string,
+  author: PropTypes.string,
+  quantity: PropTypes.number,
+  reservedQuantity: PropTypes.number,
+  id: PropTypes.string,
 };
 
 export default RestaurantCard;

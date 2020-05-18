@@ -51,7 +51,7 @@ export const {
   setReserved,
 } = bookSlice.actions;
 
-export const fetchBooks = (term, page, history) => async (dispatch) => {
+export const fetchBooks = (term, page) => async (dispatch) => {
   try {
     dispatch(setTerm(''));
     dispatch(setBooks([]));
@@ -74,22 +74,11 @@ export const fetchBooks = (term, page, history) => async (dispatch) => {
       dispatch(setTerm(term));
       dispatch(setAvailablePages(pages));
       dispatch(setPage(page));
-      return history.push({
-        pathname: '/results',
-        search: queryString.stringify({ term, page }),
-      });
+      return;
     }
-    history.push({
-      pathname: '/',
-      search: '',
-    });
     return;
     return dispatch(setError(`No matching books found.`));
   } catch (err) {
-    history.push({
-      pathname: '/',
-      search: '',
-    });
     console.log(err.response.data.msg);
     dispatch(setError(err.response.data.msg));
   }
