@@ -29,6 +29,9 @@ const Pagination = ({ availablePages, term }) => {
   );
 };
 
-Pagination.propTypes = {};
+Pagination.propTypes = {
+  availablePages: PropTypes.number,
+  term: PropTypes.string,
+};
 
 export default Pagination;

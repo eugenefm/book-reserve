@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import BookCard from './BookCard';
 import { useSelector } from 'react-redux';
 import { selectBooks, selectAvailablePages, selectTerm } from '../store/slice';
@@ -34,11 +33,6 @@ const SearchResults = () => {
       </main>
     )
   );
-};
-
-SearchResults.protoTypes = {
-  city: PropTypes.string,
-  restaurants: PropTypes.array,
 };
 
 export default SearchResults;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchBooks, updateReservation } from '../store/slice';
+import { useDispatch } from 'react-redux';
+import { updateReservation } from '../store/slice';
 
 const RestaurantCard = ({ title, author, quantity, reservedQuantity, id }) => {
   const dispatch = useDispatch();

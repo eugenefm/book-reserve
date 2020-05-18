@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import queryString from 'query-string';
 import axios from 'axios';
 
 export const bookSlice = createSlice({
@@ -73,7 +72,6 @@ export const fetchBooks = (term, page) => async (dispatch) => {
       dispatch(setPage(page));
       return;
     }
-    return;
     return dispatch(setError(`No matching books found.`));
   } catch (err) {
     console.log(err.response.data.msg);
@@ -98,17 +96,6 @@ export const updateReservation = (type, id) => async (dispatch) => {
   }
 };
 
-// export const selectRestaurants = (state) => {
-//   const { availableRestaurants, filter } = state.restaurantSearch;
-//   if (!filter) return availableRestaurants;
-//   return availableRestaurants.filter(
-//     (restaurant) =>
-//       restaurant.name.toLowerCase().includes(filter.toLowerCase()) ||
-//       restaurant.address.toLowerCase().includes(filter.toLowerCase()) ||
-//       restaurant.area.toLowerCase().includes(filter.toLowerCase())
-//   );
-// };
-
 export const selectError = (state) => state.bookSearch.error;
 
 export const selectTerm = (state) => state.bookSearch.term;
@@ -118,7 +105,5 @@ export const selectPage = (state) => state.bookSearch.page;
 export const selectAvailablePages = (state) => state.bookSearch.availablePages;
 
 export const selectBooks = (state) => state.bookSearch.availableBooks;
-
-// export const selectCity = (state) => state.restaurantSearch.city;
 
 export default bookSlice.reducer;
