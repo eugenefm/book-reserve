@@ -54,11 +54,8 @@ export const {
 export const fetchBooks = (term, page) => async (dispatch) => {
   try {
     dispatch(setTerm(''));
-    dispatch(setBooks([]));
     dispatch(setError(''));
     dispatch(setFetching(true));
-    dispatch(setAvailablePages(0));
-    dispatch(setPage(0));
 
     const res = await axios.get('/api', {
       params: {

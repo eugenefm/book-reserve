@@ -12,7 +12,7 @@ const SearchResults = () => {
 
   return (
     books.length > 0 && (
-      <div aria-live='polite'>
+      <main aria-live='polite'>
         <h2>{`Search Results${
           term && term.length > 0 && ` for "${term}"`
         }`}</h2>
@@ -28,8 +28,10 @@ const SearchResults = () => {
             />
           ))}
         </ul>
-        <Pagination availablePages={availablePages} term={term} />
-      </div>
+        {availablePages > 1 && (
+          <Pagination availablePages={availablePages} term={term} />
+        )}
+      </main>
     )
   );
 };
