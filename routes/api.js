@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
 
     console.log(books);
     if (!books || books.length < 1) {
-      return res.status(400).json({ msg: 'No matching books found' });
+      return res.status(400).json({ msg: 'No matching books found.' });
     }
 
     const count = await Book.find(query).countDocuments();

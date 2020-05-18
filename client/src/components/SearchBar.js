@@ -19,7 +19,7 @@ const SearchBar = ({
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <label for={name}>{label}</label>
+        <label htmlFor={name}>{label}</label>
         <input
           id={name}
           name={name}

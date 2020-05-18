@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import restaurantReducer from './slice';
+import bookReducer from './slice';
 
 export default configureStore({
   reducer: {
-    restaurantSearch: restaurantReducer,
+    bookSearch: bookReducer,
   },
 });
