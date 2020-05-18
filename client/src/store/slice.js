@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-// import { OPEN_TABLE_ROOT } from '../constants';
+import queryString from 'query-string';
 import axios from 'axios';
 
 export const bookSlice = createSlice({
@@ -51,20 +51,19 @@ export const {
   setReserved,
 } = bookSlice.actions;
 
-export const fetchBooks = (term, page, reserved, history) => async (
-  dispatch
-) => {
+export const fetchBooks = (term, page, history) => async (dispatch) => {
   try {
     dispatch(setTerm(''));
     dispatch(setBooks([]));
     dispatch(setError(''));
     dispatch(setFetching(true));
+    dispatch(setAvailablePages(0));
+    dispatch(setPage(0));
 
     const res = await axios.get('/api', {
       params: {
         term,
         page,
-        reserved,
       },
     });
 
@@ -75,10 +74,22 @@ export const fetchBooks = (term, page, reserved, history) => async (
       dispatch(setTerm(term));
       dispatch(setAvailablePages(pages));
       dispatch(setPage(page));
-      return;
+      return history.push({
+        pathname: '/results',
+        search: queryString.stringify({ term, page }),
+      });
     }
+    history.push({
+      pathname: '/',
+      search: '',
+    });
+    return;
     return dispatch(setError(`No matching books found.`));
   } catch (err) {
+    history.push({
+      pathname: '/',
+      search: '',
+    });
     console.log(err.response.data.msg);
     dispatch(setError(err.response.data.msg));
   }

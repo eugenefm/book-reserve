@@ -13,7 +13,6 @@ router.get('/', async (req, res) => {
     console.log(req.query.term);
     const query = {};
     if (req.query.term) query.$text = { $search: req.query.term };
-    if (req.query.reserved) query.reservedQuantity = { $gt: 0 };
 
     const books = await Book.find(query)
       .limit(perPage)

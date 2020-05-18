@@ -29,7 +29,7 @@ const SearchBar = ({
           type='text'
           aria-label={ariaLabel}
         />
-        <button>{ctaText}</button>
+        <button className='search'>{ctaText}</button>
       </form>
     </div>
   );

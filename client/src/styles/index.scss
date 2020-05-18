@@ -84,6 +84,23 @@ a {
 }
 
 button {
+  color: $mainAccent;
+  padding: 0 10px;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    text-decoration: underline;
+  }
+}
+
+.search {
   min-height: 44px;
   padding: 0 20px;
   display: block;

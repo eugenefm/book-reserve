@@ -7,19 +7,18 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
 import './styles/index.scss';
-import Home from './components/Header';
-import Results from './components/Results';
+import Header from './components/Header';
+import SearchResults from './components/SearchResults';
 import Footer from './components/Footer';
-import App from './components/App';
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      {/* <Router>
-        <Route exact path='/' component={Home} />
-        <Route path='/results' component={Results} /> 
-      </Router> */}
-      <App />
+      <Router>
+        <Header />
+        <Route exact path='/results' component={SearchResults} />
+        <Footer />
+      </Router>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
