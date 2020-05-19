@@ -73,14 +73,6 @@ button {
   color: $lightText;
 }
 
-a {
-  color: $mainAccent;
-
-  &:hover {
-    color: lighten($mainAccent, 10);
-  }
-}
-
 button {
   color: $mainAccent;
   padding: 0 10px;
@@ -115,11 +107,13 @@ button {
 
   &:hover {
     border: 2px solid darken($mainAccent, 10);
+    text-decoration: none;
     background-color: darken($mainAccent, 10);
   }
 
   &:focus {
     border: 2px solid $darkText;
+    text-decoration: none;
   }
 }
 
@@ -141,7 +135,6 @@ input {
   margin-right: 10px;
   padding: 20px 5px 5px;
   border: 1px solid $lightShade;
-  min-width: 250px;
   flex-grow: 1;
 
   &:focus {

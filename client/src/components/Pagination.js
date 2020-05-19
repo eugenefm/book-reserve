@@ -5,7 +5,6 @@ import { selectPage, fetchBooks } from '../store/slice';
 
 const Pagination = ({ availablePages, term }) => {
   const page = useSelector(selectPage);
-  console.log(page);
   const dispatch = useDispatch();
 
   return (

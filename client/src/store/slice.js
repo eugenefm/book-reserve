@@ -74,7 +74,6 @@ export const fetchBooks = (term, page) => async (dispatch) => {
     }
     return dispatch(setError(`No matching books found.`));
   } catch (err) {
-    console.log(err.response.data.msg);
     dispatch(setError(err.response.data.msg));
   }
 };
@@ -91,7 +90,6 @@ export const updateReservation = (type, id) => async (dispatch) => {
     const book = res.data;
     if (book) return dispatch(setReserved(book));
   } catch (err) {
-    console.log(err.response.data.msg);
     dispatch(setError(err.response.data.msg));
   }
 };

@@ -10,7 +10,7 @@ router.get('/', async (req, res) => {
   try {
     const perPage = 3;
     const page = req.query.page || 0;
-    console.log(req.query.term);
+
     const query = {};
     if (req.query.term) query.$text = { $search: req.query.term };
 
@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
       .limit(perPage)
       .skip(perPage * page);
 
-    console.log(books);
     if (!books || books.length < 1) {
       return res.status(400).json({ msg: 'No matching books found.' });
     }
@@ -40,7 +39,6 @@ router.get('/', async (req, res) => {
 router.patch('/', async (req, res) => {
   try {
     const { type, id } = req.body;
-    console.log(req.body);
 
     const book = await Book.findOne({ _id: id });
     if (!book) {
