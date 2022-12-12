@@ -18,7 +18,7 @@
   "license": "ISC",
   "homepage": "https://github.com/eugenefm/right-price#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "mongodb": "^3.3.0",
     "mongoose": "^5.6.9",
     "query-string": "^6.12.1",
